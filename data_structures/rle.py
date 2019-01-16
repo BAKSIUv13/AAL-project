@@ -23,13 +23,14 @@ def str_to_rle_element_list(string):
 
     # check special cases
 
-    if len(string) == 1:
-        return [RLEelement(1, string[0])]
+    # list is empty when given string has less than 1 chatacters
+    if not string:
+        return list()
 
-    # main code, len(string) > 1
+    # main algorithm
     previous = string[0]
     counter = 1
-    list_to_return = []
+    list_to_return = list()
     for i in range(1, len(string)):
         current = string[i]
         if current == previous:
@@ -38,20 +39,20 @@ def str_to_rle_element_list(string):
             list_to_return.append(RLEelement(counter, previous))
             counter = 1
         previous = current
-    # append last sequence of letters
+    # append last or first sequence of letters
     list_to_return.append(RLEelement(counter, previous))
 
     return list_to_return
 
 def rle_element_list_to_str(rle_element_list, index_a=None, index_b=None):
-    """Return str.
+    """Return the string.
 
 If index_a or/and index_b are given, function returns string based on a list
 with decremented counters in rle_element in rle_element_list[index_a]
 and/or rle_element_list[index_b]. Function does not modify rle_element_list.
     """
-    string_to_return = ""
 
+    string_to_return = str()
     if index_a is None and index_b is None:
         # no decrement counter
         for rle_element in rle_element_list:
@@ -59,11 +60,13 @@ and/or rle_element_list[index_b]. Function does not modify rle_element_list.
     else:
         # decrement counter
         for i, rle_element in enumerate(rle_element_list):
-            # double increment
+            # double decrement counter
             if i == index_a == index_b:
                 string_to_return += rle_element.rle_element_to_str()[2:]
+            # single decrement counter
             elif i in (index_a, index_b):
                 string_to_return += rle_element.rle_element_to_str()[1:]
+            # no decrement counter
             else:
                 string_to_return += rle_element.rle_element_to_str()
 
