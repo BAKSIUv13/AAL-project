@@ -50,7 +50,7 @@ class Optimum:
         """
         # check special cases
 
-        # list is empty when given string has less than 3 chatacters
+        # list is empty when given string has less than 3 characters
         if len(self._string) < 3:
             return list()
 

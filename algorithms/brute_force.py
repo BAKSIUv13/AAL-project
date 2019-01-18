@@ -6,22 +6,24 @@
 def brute_force(string):
     """Function implementing the brute force algorithm.
 
-Return the set of unique variables.
+Return the list of unique variables.
     """
 
     # check special cases
 
-    # set is empty when given string has less than 3 chatacters
+    # list is empty when given string has less than 3 chatacters
     if len(string) < 3:
-        return set()
+        return list()
 
     # main algorithm
-    set_to_return = set()
+    list_to_return = list()
     for i in range(len(string)):
         for j in range(i + 1, len(string)):
             new_string = (string[:i]
                           + string[i + 1:j]
                           + string[j + 1:])
-            set_to_return.add(new_string)
+            if new_string not in list_to_return:
+                list_to_return.append(new_string)
+                list_to_return.sort()
 
-    return set_to_return
+    return list_to_return

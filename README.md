@@ -14,6 +14,4 @@ To install requirements:
 
 `pip install -r requirements.txt`
 
-## Run program - variant 1
-
-`python3 main.py`
+## Running program
