@@ -38,14 +38,28 @@ def interface(mode,
             strings = list()
             strings.append(string)
         else:
-            _help_message('If you want to use the first mode, pass file_name '
-                          + 'or string')
+            _help_message('If you want to use m1, pass --file or --string')
 
         # Run mode_1
         modes.mode_1(is_verbose, strings)
 
     if mode == 'm2':
-        pass
+        if string_length is not None and number_of_generations is not None:
+            # Run mode 2
+            modes.mode_2(is_verbose, string_length, number_of_generations)
+        else:
+            _help_message('If you want to use the m2, pass --string_length '
+                          + 'and --number_of_generations')
 
     if mode == 'm3':
-        pass
+        if (start_n is not None and stride is not None and
+                number_of_strides is not None and
+                number_of_generations is not None):
+            # Run mode 3
+            modes.mode_3(start_n, stride, number_of_strides,
+                         number_of_generations)
+        else:
+            _help_message('If you want to use the m3, pass --start_n '
+                          + 'and --stride '
+                          + 'and --number_of_strides '
+                          + 'and --number_of_generations ')
