@@ -35,7 +35,7 @@ def interface(mode,
                 strings = file.readlines()
                 strings = [x.strip() for x in strings]
         elif string is not None:
-            strings = list()
+            strings = []
             strings.append(string)
         else:
             _help_message('If you want to use m1, pass --file or --string')
@@ -62,4 +62,4 @@ def interface(mode,
             _help_message('If you want to use the m3, pass --start_n '
                           + 'and --stride '
                           + 'and --number_of_strides '
-                          + 'and --number_of_generations ')
+                          + 'and --number_of_generations')

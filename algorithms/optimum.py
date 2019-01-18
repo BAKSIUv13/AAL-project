@@ -5,7 +5,7 @@
 
 from data_structures import rle
 
-# helpful functions
+# helpful function
 def _is_special_case(rle_element_previous,
                      rle_element_middle,
                      rle_element_next):
@@ -30,12 +30,13 @@ class Optimum:
     def _get_special_cases_list(self):
         """Return the special cases list."""
 
-        special_cases = list()
+        special_cases = []
         for i, _ in enumerate(self._rle_element_list):
             if 0 < i < len(self._rle_element_list) - 1:
                 rle_element_previous = self._rle_element_list[i - 1]
                 rle_element_middle = self._rle_element_list[i]
                 rle_element_next = self._rle_element_list[i + 1]
+
                 if _is_special_case(rle_element_previous,
                                     rle_element_middle,
                                     rle_element_next):
@@ -44,19 +45,19 @@ class Optimum:
         return special_cases
 
     def optimum(self):
-        """Function implementing the optimal algorithm.
-
-    Return the list of unique variables.
+        """
+        Function implementing the optimal algorithm.
+        Return the list of unique variables.
         """
         # check special cases
 
         # list is empty when given string has less than 3 characters
         if len(self._string) < 3:
-            return list()
+            return []
 
         # main algorithm
         special_cases = self._get_special_cases_list()
-        list_to_return = list()
+        list_to_return = []
         for i, item in enumerate(self._rle_element_list):
             # 'aaaabcde'
             #  i   b

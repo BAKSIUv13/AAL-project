@@ -18,10 +18,7 @@ def _generate_string(string_length):
                    for _ in range(string_length))
 
 def mode_1(is_verbose, strings):
-    """Mode 1 implementation.
-
-    strings - iterable object
-    """
+    """Mode 1 implementation. strings argument is iterable object."""
 
     for _string in strings:
         test = main_tests.SingleTest(_string)
@@ -41,13 +38,14 @@ def mode_1(is_verbose, strings):
 def mode_2(is_verbose, string_length, number_of_generations):
     """Mode 2 implementation."""
 
-    generated_strings = list()
+    generated_strings = []
     for _ in itertools.repeat(None, number_of_generations):
         generated_strings.append(_generate_string(string_length))
 
     mode_1(is_verbose, generated_strings)
 
 def _theoretical_evaluation(n_size):
+    # n^3 + n
     return (n_size ** 3) + n_size
 
 def mode_3(start_n, stride, number_of_strides,
@@ -105,7 +103,7 @@ def mode_3(start_n, stride, number_of_strides,
     plt.title('Comparison between brute force(red) and optimum(green)')
 
     # Table displayed on the screen
-    print('Algorithm with asymptote')
+    print('Algorithm with asymptote n^3 + n')
     print('{0:16}{1:16}{2:16}'.format('n', 't(n)[s]', 'q(n)'))
     print()
 

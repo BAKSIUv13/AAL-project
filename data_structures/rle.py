@@ -25,12 +25,12 @@ def str_to_rle_element_list(string):
 
     # list is empty when given string has less than 1 chatacters
     if not string:
-        return list()
+        return []
 
     # main algorithm
     previous = string[0]
     counter = 1
-    list_to_return = list()
+    list_to_return = []
     for i in range(1, len(string)):
         current = string[i]
         if current == previous:
@@ -45,14 +45,14 @@ def str_to_rle_element_list(string):
     return list_to_return
 
 def rle_element_list_to_str(rle_element_list, index_a=None, index_b=None):
-    """Return the string.
-
-If index_a or/and index_b are given, function returns string based on a list
-with decremented counters in rle_element in rle_element_list[index_a]
-and/or rle_element_list[index_b]. Function does not modify rle_element_list.
+    """
+    Return the string.
+    If index_a or/and index_b are given, function returns string based on a list
+    with decremented counters in rle_element in rle_element_list[index_a]
+    and/or rle_element_list[index_b]. Function does not modify rle_element_list.
     """
 
-    string_to_return = str()
+    string_to_return = ""
     if index_a is None and index_b is None:
         # no decrement counter
         for rle_element in rle_element_list:

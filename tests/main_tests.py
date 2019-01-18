@@ -26,10 +26,11 @@ class SingleTest:
         return self._optimum_list.copy()
 
     def run_single_test(self):
-        """Run signle test.
-
-Return True, if the optimum result is the same as the brute force result.
-"""
+        """
+        Run signle test.
+        Return True, if the optimum result is the same as the brute force
+        result.
+        """
 
         self._brute_force_list = brute_force.brute_force(self._string)
         self._optimum_list = optimum.Optimum(self._string).optimum()
