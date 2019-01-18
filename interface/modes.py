@@ -49,7 +49,7 @@ def _theoretical_evaluation(n_size):
     return (n_size ** 3) + n_size
 
 def mode_3(start_n, stride, number_of_strides,
-           number_of_generations):
+           number_of_generations, is_m3_fast):
     """Mode 3 implementation."""
 
     # lists to generate chart
@@ -75,16 +75,18 @@ def mode_3(start_n, stride, number_of_strides,
 
             y_optimum_raw.append(result)
 
-            start = time.time()
-            brute_force.brute_force(generated_string)
-            end = time.time()
-            result = end - start
+            if not is_m3_fast:
+                start = time.time()
+                brute_force.brute_force(generated_string)
+                end = time.time()
+                result = end - start
 
-            y_brute_force_raw.append(result)
+                y_brute_force_raw.append(result)
 
         y_optimum.append(sum(y_optimum_raw) / float(len(y_optimum_raw)))
-        y_brute_force.append(sum(y_brute_force_raw)
-                             / float(len(y_brute_force_raw)))
+        if not is_m3_fast:
+            y_brute_force.append(sum(y_brute_force_raw)
+                                 / float(len(y_brute_force_raw)))
 
         x_arg.append(n_size)
 
@@ -97,10 +99,14 @@ def mode_3(start_n, stride, number_of_strides,
                    * t_divided_t_median)
 
     plt.plot(x_arg, y_optimum, color='green')
-    plt.plot(x_arg, y_brute_force, color='red')
+    if not is_m3_fast:
+        plt.plot(x_arg, y_brute_force, color='red')
     plt.xlabel('N')
     plt.ylabel('Time[s]')
-    plt.title('Comparison between brute force(red) and optimum(green)')
+    if not is_m3_fast:
+        plt.title('Comparison between brute force(red) and optimum(green)')
+    else:
+        plt.title(' Optimum algorithm with asymptote n^3 + n')
 
     # Table displayed on the screen
     print('Algorithm with asymptote n^3 + n')

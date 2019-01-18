@@ -22,7 +22,8 @@ def interface(mode,
               number_of_generations,
               start_n,
               stride,
-              number_of_strides):
+              number_of_strides,
+              is_m3_fast):
     """The function responsible for running modes."""
 
     # check if given mode is valid
@@ -57,7 +58,7 @@ def interface(mode,
                 number_of_generations is not None):
             # Run mode 3
             modes.mode_3(start_n, stride, number_of_strides,
-                         number_of_generations)
+                         number_of_generations, is_m3_fast)
         else:
             _help_message('If you want to use the m3, pass --start_n '
                           + 'and --stride '

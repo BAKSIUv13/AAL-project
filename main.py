@@ -21,9 +21,11 @@ from interface import interface
               show_default=True,
               help='(m1 | m2) The flag allows you to enable the verbose mode.')
 
+
+
 @click.option('--file',
               type=str,
-              default='None',
+              default=None,
               show_default=True,
               help='(m1) Test mode 1 with this file.')
 
@@ -63,6 +65,11 @@ from interface import interface
               show_default=True,
               help='(m3) Number of strides.')
 
+@click.option('--is_m3_fast',
+              type=bool,
+              default=False,
+              show_default=True,
+              help='(m3) Fast mode 3 without brute force.')
 
 def main_interface(mode,
                    is_verbose,
@@ -72,7 +79,8 @@ def main_interface(mode,
                    number_of_generations,
                    start_n,
                    stride,
-                   number_of_strides):
+                   number_of_strides,
+                   is_m3_fast):
     """
     Some options are not allowed for some modes.
     """
@@ -85,6 +93,7 @@ def main_interface(mode,
                         number_of_generations,
                         start_n,
                         stride,
-                        number_of_strides)
+                        number_of_strides,
+                        is_m3_fast)
 
 main_interface()
